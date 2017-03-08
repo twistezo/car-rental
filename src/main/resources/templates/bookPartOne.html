@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<nav th:replace="layout :: nav"></nav>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-3 text-right">
+            <div class="center-block">
+                <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}"/>
+            </div>
+        </div>
+        <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${carById.name}"></h3>
+                    <p th:text="${carById.description}"></p>
+                    <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
+                </div>
+        </div>
+    </div>
+
+    <hr>
+<!--  th:object="${customer}" -->
+    <div class="container">
+        <h3>Check availability:</h3>
+        <form>
+            <div class="row">
+                <input type="hidden" class="form-control" name="car_id" th:value="${carById.id}">
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" name="start_date" placeholder="Pick start date"><br><br>
+                </div>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" name="end_date" placeholder="Pick end date"><br><br>
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-success" type="submit">Check</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- If list 'availableCarById' is NOT empty car is available -->
+        <div id="checkAvailability">
+            <form method="post">
+                <div th:if="${not #lists.isEmpty(availableCarById)}">
+                    <h4>Great, chosen car is available in this period.</h4>
+                    <button class="btn btn-success" type="submit">Next</button>
+                </div>
+                <div th:if="${#lists.isEmpty(availableCarById)}">
+                    <h4 style="color: red">Chosen car is not available in this period. Try again.</h4>
+                    <button class="btn btn-danger" type="submit" disabled>Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer th:replace="layout :: footer"></footer>
+
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Hide div when url contains some word -->
+<script type="text/javascript">
+    if (window.location.href.indexOf("date") != -1) {
+        $("#checkAvailability").show();
+    }
+    else {
+        $("#checkAvailability").hide();
+    }
+</script>
+
+</body>
+</html>
