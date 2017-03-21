@@ -1,8 +1,8 @@
 package com.twistezo.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author twistezo (02.03.2017)
@@ -10,7 +10,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "borrowed_date")
-public class BorrowedDate {
+public class BorrowedDate implements Serializable {
+    private static final long serialVersionUID = -1713505055304086201L;
 
     public BorrowedDate() {
         super();

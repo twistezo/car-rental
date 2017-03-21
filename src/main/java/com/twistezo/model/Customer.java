@@ -1,12 +1,9 @@
 package com.twistezo.model;
 
-import javafx.beans.DefaultProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
+    private static final long serialVersionUID = -5499172417961772372L;
 
     public Customer(){
         super();

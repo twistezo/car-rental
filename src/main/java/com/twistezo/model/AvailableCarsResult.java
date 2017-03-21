@@ -1,11 +1,13 @@
 package com.twistezo.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  * @author twistezo (03.03.2017)
  */
-public class AvailableCarsResult {
+public class AvailableCarsResult implements Serializable {
+    private static final long serialVersionUID = 3209915747110932732L;
 
     public AvailableCarsResult(Long id, Long carId, String carName, String carDescription, BigDecimal carPrice) {
         this.id = id;
@@ -20,6 +22,7 @@ public class AvailableCarsResult {
     private String carName;
     private String carDescription;
     private BigDecimal carPrice;
+
 
     public Long getId() {
         return id;

@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -13,7 +14,8 @@ import java.util.*;
 
 @Entity
 @Table(name = "car")
-public class Car {
+public class Car implements Serializable {
+    private static final long serialVersionUID = 7034352443015914334L;
 
     public Car(){
         super();
