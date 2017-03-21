@@ -2,8 +2,7 @@
 Web service for car rental company (Spring + Hibernate + MySQL +Thymeleaf + Bootstrap)
 
 Features:
-
--search available cars by date range
+⋅⋅* search available cars by date range
 
 -validate availability when picking specify car
 
