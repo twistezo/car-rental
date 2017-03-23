@@ -34,7 +34,7 @@ public class MailServiceImpl implements MailService {
     public void sendMail(Customer customer, BorrowedDate borrowedDate, Car car) {
         try {
             final Email email = DefaultEmail.builder()
-                    .from(new InternetAddress("springcarrental@wp.pl"))
+                    .from(new InternetAddress("springcarrental@interia.pl"))
                     .to(Lists.newArrayList(new InternetAddress(customer.getLogin())))
                     .subject("Resume of your orders in Car Rental")
                     .body("Dear, " + customer.getFullName()
@@ -54,7 +54,7 @@ public class MailServiceImpl implements MailService {
     public void sendMailTest() {
         try {
             final Email email = DefaultEmail.builder()
-                    .from(new InternetAddress("springcarrental@wp.pl"))
+                    .from(new InternetAddress("springcarrental@interia.pl"))
                     .to(Lists.newArrayList(new InternetAddress("twistezo@outlook.com")))
                     .subject("Resume of your orders in Car Rental")
                     .body("Dear, ")
