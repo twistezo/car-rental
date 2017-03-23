@@ -25,14 +25,17 @@
     <hr>
     <div class="container">
         <h3>Check availability:</h3>
-        <form>
+
+        <form name="bookPartOneForm" onsubmit="return validateForm()">
             <div class="row">
                 <input type="hidden" class="form-control" name="car_id" th:value="${carById.id}">
                 <div class="col-sm-4">
                     <input type="date" class="form-control" name="start_date" placeholder="Pick start date"><br><br>
+                    <h4 id="startDateValidation" class="bg-danger"></h4>
                 </div>
                 <div class="col-sm-4">
                     <input type="date" class="form-control" name="end_date" placeholder="Pick end date"><br><br>
+                    <h4 id="endDateValidation" class="bg-danger"></h4>
                 </div>
                 <div class="col-sm-4">
                     <button class="btn btn-success" type="submit">Check</button>
@@ -71,6 +74,32 @@
     }
     else {
         $("#checkAvailability").hide();
+    }
+</script>
+
+<script>
+    function validateForm(){
+        var startDate=document.bookPartOneForm.start_date.value;
+        var endDate=document.bookPartOneForm.end_date.value;
+        var dateStart = new Date(startDate);
+        var dateCurrent = new Date();
+
+        if (startDate==null || startDate==""){
+            document.getElementById("startDateValidation").innerHTML = "Start date can't be blank";
+            return false;
+        }
+        else if (dateStart < dateCurrent ){
+            document.getElementById("startDateValidation").innerHTML = "Start date must be since tomorrow";
+            return false;
+        }
+        else if (endDate==null || endDate==""){
+            document.getElementById("endDateValidation").innerHTML = "End date can't be blank";
+            return false;
+        }
+        else if (endDate < startDate ){
+            document.getElementById("endDateValidation").innerHTML = "End date must be bigger than start date";
+            return false;
+        }
     }
 </script>
 

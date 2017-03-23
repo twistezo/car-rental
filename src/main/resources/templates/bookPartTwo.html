@@ -23,7 +23,6 @@
     </div>
 
     <hr>
-    <!--  th:object="${customer}" -->
     <div class="container">
 
         <h3>Complete the form:</h3>
@@ -31,20 +30,23 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
 
-                <form th:object="${customer}" method="post">
+                <form name="bookPartTwoForm" th:object="${customer}" method="post" onsubmit="return validateForm()">
                     <div class="form-group">
-                        <label for="fullname">Full name:</label>
+                        <label>Full name:</label>
                         <input type="text" class="form-control" name="fullName" placeholder="Enter full name">
+                        <h4 id="fullNameValidation" class="bg-danger"></h4>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label>Email:</label>
                         <input type="email" class="form-control" name="login" placeholder="Enter email">
+                        <h4 id="emailValidation" class="bg-danger"></h4>
                     </div>
                     <div class="form-group">
-                        <label for="pwd">Password:</label>
+                        <label>Password:</label>
                         <input type="password" class="form-control" name="password" placeholder="Enter password">
+                        <h4 id="passwordValidation" class="bg-danger"></h4>
                     </div>
-                    <button class="btn btn-success" type="submit">Next</button>
+                    <button class="btn btn-success" type="submit" >Next</button>
                 </form>
 
             </div>
@@ -58,16 +60,36 @@
 
 </div>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script>
+    function validateForm(){
+        var fullName=document.bookPartTwoForm.fullName.value;
+        var login=document.bookPartTwoForm.login.value;
+        var password=document.bookPartTwoForm.password.value;
 
-<!-- Hide div when url contains some word -->
-<script type="text/javascript">
-    if (window.location.href.indexOf("date") != -1) {
-        $("#checkAvailability").show();
-    }
-    else {
-        $("#checkAvailability").hide();
+        if (fullName==null || fullName==""){
+            document.getElementById("fullNameValidation").innerHTML = "Full name can't be blank";
+            return false;
+        }
+        else if (fullName.length < 2 || fullName.length > 50) {
+            document.getElementById("fullNameValidation").innerHTML = "Full name must be between 2 ~ 50 length";
+            return false;
+        }
+        else if (login==null || login==""){
+            document.getElementById("emailValidation").innerHTML = "Email can't be blank";
+            return false;
+        }
+        else if (login.length < 2 || login.length > 50) {
+            document.getElementById("emailValidation").innerHTML = "Email must be between 2 ~ 50 length";
+            return false;
+        }
+        else if (password==null || password==""){
+            document.getElementById("passwordValidation").innerHTML = "Password can't be blank";
+            return false;
+        }
+        else if (password.length < 5 || password.length > 60) {
+            document.getElementById("passwordValidation").innerHTML = "Password must be between 5 ~ 60 length";
+            return false;
+        }
     }
 </script>
 
