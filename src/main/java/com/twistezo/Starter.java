@@ -8,12 +8,7 @@ import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration
 
 import javax.persistence.Persistence;
 
-
-/**
- * @author twistezo (20.02.2017)
- */
-
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class Starter implements ApplicationRunner {
 
     public static void main(String[] args) {
@@ -26,5 +21,6 @@ public class Starter implements ApplicationRunner {
     }
 
     @Override
-    public void run(ApplicationArguments applicationArguments) throws Exception { }
+    public void run(ApplicationArguments applicationArguments) throws Exception {
+    }
 }

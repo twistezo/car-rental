@@ -1,107 +1,98 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout :: head"></head>
+
 <body>
-<nav th:replace="layout :: nav"></nav>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-sm-3 text-right">
-            <div class="center-block">
-                <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}"/>
+    <nav th:replace="layout :: nav"></nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}" />
+                </div>
             </div>
-        </div>
-        <div class="col-sm-9">
+            <div class="col-sm-9">
                 <div class="caption">
                     <h3 th:text="${carById.name}"></h3>
                     <p th:text="${carById.description}"></p>
                     <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
                 </div>
-        </div>
-    </div>
-
-    <hr>
-    <div class="container">
-        <h3>Check availability:</h3>
-
-        <form name="bookPartOneForm" onsubmit="return validateForm()">
-            <div class="row">
-                <input type="hidden" class="form-control" name="car_id" th:value="${carById.id}">
-                <div class="col-sm-4">
-                    <input type="date" class="form-control" name="start_date" placeholder="Pick start date"><br><br>
-                    <h4 id="startDateValidation" class="bg-danger"></h4>
-                </div>
-                <div class="col-sm-4">
-                    <input type="date" class="form-control" name="end_date" placeholder="Pick end date"><br><br>
-                    <h4 id="endDateValidation" class="bg-danger"></h4>
-                </div>
-                <div class="col-sm-4">
-                    <button class="btn btn-success" type="submit">Check</button>
-                </div>
             </div>
-        </form>
+        </div>
+        <hr>
+        <div class="container">
+            <h3>Check availability:</h3>
 
-        <!-- If list 'availableCarById' is NOT empty car is available -->
-        <div id="checkAvailability">
-            <form method="post">
-                <div th:if="${not #lists.isEmpty(availableCarById)}">
-                    <h4>Great, chosen car is available in this period.</h4>
-                    <button class="btn btn-success" type="submit">Next</button>
-                </div>
-                <div th:if="${#lists.isEmpty(availableCarById)}">
-                    <h4 style="color: red">Chosen car is not available in this period. Try again.</h4>
-                    <button class="btn btn-danger" type="submit" disabled>Next</button>
+            <form name="bookPartOneForm" onsubmit="return validateForm()">
+                <div class="row">
+                    <input type="hidden" class="form-control" name="car_id" th:value="${carById.id}">
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="start_date" placeholder="Pick start date"><br><br>
+                        <h4 id="startDateValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="end_date" placeholder="Pick end date"><br><br>
+                        <h4 id="endDateValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-success" type="submit">Check</button>
+                    </div>
                 </div>
             </form>
+            <!-- If list 'availableCarById' is NOT empty car is available -->
+            <div id="checkAvailability">
+                <form method="post">
+                    <div th:if="${not #lists.isEmpty(availableCarById)}">
+                        <h4>Great, chosen car is available in this period.</h4>
+                        <button class="btn btn-success" type="submit">Next</button>
+                    </div>
+                    <div th:if="${#lists.isEmpty(availableCarById)}">
+                        <h4 style="color: red">Chosen car is not available in this period. Try again.</h4>
+                        <button class="btn btn-danger" type="submit" disabled>Next</button>
+                    </div>
+                </form>
+            </div>
         </div>
+        <hr>
+        <footer th:replace="layout :: footer"></footer>
     </div>
-
-    <hr>
-
-    <footer th:replace="layout :: footer"></footer>
-
-</div>
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Hide div when url contains some word -->
-<script type="text/javascript">
-    if (window.location.href.indexOf("date") != -1) {
-        $("#checkAvailability").show();
-    }
-    else {
-        $("#checkAvailability").hide();
-    }
-</script>
-
-<script>
-    function validateForm(){
-        var startDate=document.bookPartOneForm.start_date.value;
-        var endDate=document.bookPartOneForm.end_date.value;
-        var dateStart = new Date(startDate);
-        var dateCurrent = new Date();
-
-        if (startDate==null || startDate==""){
-            document.getElementById("startDateValidation").innerHTML = "Start date can't be blank";
-            return false;
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Hide div when url contains some word -->
+    <script type="text/javascript">
+        if (window.location.href.indexOf("date") != -1) {
+            $("#checkAvailability").show();
         }
-        else if (dateStart < dateCurrent ){
-            document.getElementById("startDateValidation").innerHTML = "Start date must be since tomorrow";
-            return false;
+        else {
+            $("#checkAvailability").hide();
         }
-        else if (endDate==null || endDate==""){
-            document.getElementById("endDateValidation").innerHTML = "End date can't be blank";
-            return false;
-        }
-        else if (endDate < startDate ){
-            document.getElementById("endDateValidation").innerHTML = "End date must be bigger than start date";
-            return false;
-        }
-    }
-</script>
+    </script>
+    <script>
+        function validateForm() {
+            var startDate = document.bookPartOneForm.start_date.value;
+            var endDate = document.bookPartOneForm.end_date.value;
+            var dateStart = new Date(startDate);
+            var dateCurrent = new Date();
 
+            if (startDate == null || startDate == "") {
+                document.getElementById("startDateValidation").innerHTML = "Start date can't be blank";
+                return false;
+            }
+            else if (dateStart < dateCurrent) {
+                document.getElementById("startDateValidation").innerHTML = "Start date must be since tomorrow";
+                return false;
+            }
+            else if (endDate == null || endDate == "") {
+                document.getElementById("endDateValidation").innerHTML = "End date can't be blank";
+                return false;
+            }
+            else if (endDate < startDate) {
+                document.getElementById("endDateValidation").innerHTML = "End date must be bigger than start date";
+                return false;
+            }
+        }
+    </script>
 </body>
+
 </html>

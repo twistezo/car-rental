@@ -9,10 +9,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-/**
- * @author twistezo (02.03.2017)
- */
-
 @Service
 public class BorrowedDateServiceImpl implements BorrowedDateService {
 
@@ -21,7 +17,6 @@ public class BorrowedDateServiceImpl implements BorrowedDateService {
     public BorrowedDateServiceImpl(BorrowedDateDAO borrowedDateDAO) {
         this.borrowedDateDAO = borrowedDateDAO;
     }
-
 
     @Override
     public BorrowedDate findByCustomerId(Long id) {

@@ -11,11 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * @author twistezo (08.03.2017)
- */
 public class BorrowedDateServiceImplTest {
-
     BorrowedDate borrowedDate;
     Customer customer;
     BorrowedDateDAO borrowedDateDAO;
@@ -30,9 +26,9 @@ public class BorrowedDateServiceImplTest {
         customer.setTotalPrice(new BigDecimal(100));
 
         Calendar start = Calendar.getInstance();
-        start.set(2017,01,01,00,00,00);
+        start.set(2017, 01, 01, 00, 00, 00);
         Calendar end = Calendar.getInstance();
-        end.set(2017,01,10,00,00,00);
+        end.set(2017, 01, 10, 00, 00, 00);
         borrowedDate = new BorrowedDate();
         borrowedDate.setStartDate(start);
         borrowedDate.setEndDate(end);
@@ -54,7 +50,5 @@ public class BorrowedDateServiceImplTest {
         long start = startDate.getTimeInMillis();
         return TimeUnit.MILLISECONDS.toDays(Math.abs(end - start));
     }
-
-
 
 }

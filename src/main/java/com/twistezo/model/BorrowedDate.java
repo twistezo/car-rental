@@ -4,10 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
 
-/**
- * @author twistezo (02.03.2017)
- */
-
 @Entity
 @Table(name = "borrowed_date")
 public class BorrowedDate implements Serializable {
@@ -76,5 +72,3 @@ public class BorrowedDate implements Serializable {
         this.customer = customer;
     }
 }
-
-

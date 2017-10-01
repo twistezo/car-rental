@@ -1,92 +1,82 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout :: head"></head>
+
 <body>
-<nav th:replace="layout :: nav"></nav>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-sm-3 text-right">
-            <div class="center-block">
-                <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}"/>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <div class="caption">
-                <h3 th:text="${carById.name}"></h3>
-                <p th:text="${carById.description}"></p>
-                <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <!--  th:object="${customer}" -->
+    <nav th:replace="layout :: nav"></nav>
     <div class="container">
-
-        <h3>Payment:</h3>
-
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
-
-            <form name="bookPartThreeForm" th:object="${customer}" method="post" onsubmit="return validateForm()">
-                <div class="form-group">
-                    <label>Card number:</label>
-                    <input type="text" class="form-control" name="cardNumber" placeholder="Enter card number">
-                    <h4 id="cardNumberValidation" class="bg-danger"></h4>
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}" />
                 </div>
-                <div class="form-group">
-                    <label>CVV:</label>
-                    <input type="text" class="form-control" name="cvv" placeholder="Enter CVV">
-                    <h4 id="cvvValidation" class="bg-danger"></h4>
+            </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${carById.name}"></h3>
+                    <p th:text="${carById.description}"></p>
+                    <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
                 </div>
-                <button class="btn btn-success" type="submit">Next</button>
-            </form>
-
+            </div>
         </div>
-        <div class="col-sm-3"></div>
-
+        <hr>
+        <!--  th:object="${customer}" -->
+        <div class="container">
+            <h3>Payment:</h3>
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <form name="bookPartThreeForm" th:object="${customer}" method="post" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label>Card number:</label>
+                        <input type="text" class="form-control" name="cardNumber" placeholder="Enter card number">
+                        <h4 id="cardNumberValidation" class="bg-danger"></h4>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV:</label>
+                        <input type="text" class="form-control" name="cvv" placeholder="Enter CVV">
+                        <h4 id="cvvValidation" class="bg-danger"></h4>
+                    </div>
+                    <button class="btn btn-success" type="submit">Next</button>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <hr>
+        <footer th:replace="layout :: footer"></footer>
     </div>
+    <script>
+        function validateForm() {
+            var cardNumber = document.bookPartThreeForm.cardNumber.value;
+            var cvv = document.bookPartThreeForm.cvv.value;
 
-    <hr>
+            if (cardNumber == null || cardNumber == "") {
+                document.getElementById("cardNumberValidation").innerHTML = "Card number can't be blank";
+                return false;
+            }
+            else if (!cardNumber.match(/^\d+$/)) {
+                document.getElementById("cardNumberValidation").innerHTML = "Card number must have only digits";
+                return false;
+            }
+            else if (cardNumber.length > 16 || cardNumber.length < 16) {
+                document.getElementById("cardNumberValidation").innerHTML = "Card number must have exactly 16 digits";
+                return false;
+            }
+            else if (cvv == null || cvv == "") {
+                document.getElementById("cvvValidation").innerHTML = "CVV can't be blank";
+                return false;
+            }
+            else if (!cvv.match(/^\d+$/)) {
+                document.getElementById("cvvValidation").innerHTML = "CVV must have only digits";
+                return false;
+            }
+            else if (cvv.length != 3) {
+                document.getElementById("cvvValidation").innerHTML = "CVV must have exactly 3 digits";
+                return false;
+            }
+        }
 
-    <footer th:replace="layout :: footer"></footer>
-
-</div>
-
-<script>
-    function validateForm(){
-        var cardNumber=document.bookPartThreeForm.cardNumber.value;
-        var cvv=document.bookPartThreeForm.cvv.value;
-
-        if (cardNumber==null || cardNumber==""){
-            document.getElementById("cardNumberValidation").innerHTML = "Card number can't be blank";
-            return false;
-        }
-        else if (!cardNumber.match(/^\d+$/)) {
-            document.getElementById("cardNumberValidation").innerHTML = "Card number must have only digits";
-            return false;
-        }
-        else if (cardNumber.length > 16 || cardNumber.length < 16) {
-            document.getElementById("cardNumberValidation").innerHTML = "Card number must have exactly 16 digits";
-            return false;
-        }
-        else if (cvv==null || cvv==""){
-            document.getElementById("cvvValidation").innerHTML = "CVV can't be blank";
-            return false;
-        }
-        else if (!cvv.match(/^\d+$/)) {
-            document.getElementById("cvvValidation").innerHTML = "CVV must have only digits";
-            return false;
-        }
-        else if (cvv.length != 3) {
-            document.getElementById("cvvValidation").innerHTML = "CVV must have exactly 3 digits";
-            return false;
-        }
-    }
-</script>
-
+    </script>
 </body>
+
 </html>

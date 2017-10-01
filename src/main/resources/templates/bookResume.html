@@ -1,114 +1,99 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout :: head"></head>
+
 <body>
-<nav th:replace="layout :: nav"></nav>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-sm-2">
-            <h3>Resume</h3>
-            <hr>
-        </div>
-    </div>
-
-    <h4>Chosen car:</h4>
-    <hr>
-
-    <div class="row">
-        <div class="col-sm-3 text-right">
-            <div class="center-block">
-                <img height="100" th:src="@{'/img/'+${carById.name}+'.png'}"/>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <div class="caption">
-                <h3 th:text="${carById.name}"></h3>
-                <h5 th:text="${carById.description}"></h5>
-                <h5 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h5>
-            </div>
-        </div>
-    </div>
-
-    <h4>Your data:</h4>
-    <hr>
-
-    <div class="row">
-        <div class="col-sm-3 text-right">
-            <div class="center-block">
-                <img height="130" th:src="@{'/img/customer-blank.png'}"/>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <div class="caption">
-                <h3 th:text="${cust.fullName}"></h3>
-                <h5 th:text="'Borrowed date range: '+${#dates.format(borrowedDate.startDate, 'dd.MM.yyyy')}+
-                    ' - ' +${#dates.format(borrowedDate.endDate, 'dd.MM.yyyy')}"></h5>
-                <h5 th:text="'Card number: ' +${cust.cardNumber}"></h5>
-                <h5 th:text="'CVV: ' +${cust.cvv}"></h5>
-                <h5 th:text="'Total price: '+${cust.totalPrice}+ ' EUR'"></h5>
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
+    <nav th:replace="layout :: nav"></nav>
     <div class="container">
-
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <div class="alert alert-info alert-dismissable">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                    <strong>Info!</strong>
-                    <p>Click finish to complete process.</p>
-                    <p>Cancel button will delete every your data.</p>
-                    <p>After complete check your e-mail. We send you confirmation.</p>
+            <div class="col-sm-2">
+                <h3>Resume</h3>
+                <hr>
+            </div>
+        </div>
+        <h4>Chosen car:</h4>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img height="100" th:src="@{'/img/'+${carById.name}+'.png'}" />
                 </div>
             </div>
-            <div class="col-sm-3"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a th:href="@{/}"><input type="button" class="btn btn-danger" value="Cancel" /></a>
-                    </div>
-                    <div class="col-sm-6">
-                        <form th:object="${customer}" method="post">
-                            <button class="btn btn-success" type="submit">Finish</button>
-                        </form>
-                    </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${carById.name}"></h3>
+                    <h5 th:text="${carById.description}"></h5>
+                    <h5 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h5>
                 </div>
             </div>
-            <div class="col-sm-4"></div>
         </div>
-
+        <h4>Your data:</h4>
+        <hr>
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img height="130" th:src="@{'/img/customer-blank.png'}" />
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${cust.fullName}"></h3>
+                    <h5 th:text="'Borrowed date range: '+${#dates.format(borrowedDate.startDate, 'dd.MM.yyyy')}+
+                    ' - ' +${#dates.format(borrowedDate.endDate, 'dd.MM.yyyy')}"></h5>
+                    <h5 th:text="'Card number: ' +${cust.cardNumber}"></h5>
+                    <h5 th:text="'CVV: ' +${cust.cvv}"></h5>
+                    <h5 th:text="'Total price: '+${cust.totalPrice}+ ' EUR'"></h5>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <div class="alert alert-info alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                        <strong>Info!</strong>
+                        <p>Click finish to complete process.</p>
+                        <p>Cancel button will delete every your data.</p>
+                        <p>After complete check your e-mail. We send you confirmation.</p>
+                    </div>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a th:href="@{/}"><input type="button" class="btn btn-danger" value="Cancel" /></a>
+                        </div>
+                        <div class="col-sm-6">
+                            <form th:object="${customer}" method="post">
+                                <button class="btn btn-success" type="submit">Finish</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+        <hr>
+        <footer th:replace="layout :: footer"></footer>
     </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Hide div when url contains some word -->
+    <script type="text/javascript">
+        if (window.location.href.indexOf("date") != -1) {
+            $("#checkAvailability").show();
+        }
+        else {
+            $("#checkAvailability").hide();
+        }
 
-    <hr>
-
-    <footer th:replace="layout :: footer"></footer>
-
-</div>
-
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<!-- Hide div when url contains some word -->
-<script type="text/javascript">
-    if (window.location.href.indexOf("date") != -1) {
-        $("#checkAvailability").show();
-    }
-    else {
-        $("#checkAvailability").hide();
-    }
-</script>
-
+    </script>
 </body>
+
 </html>

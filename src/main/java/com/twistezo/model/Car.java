@@ -8,16 +8,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
-/**
- * @author twistezo (20.02.2017)
- */
-
 @Entity
 @Table(name = "car")
 public class Car implements Serializable {
     private static final long serialVersionUID = 7034352443015914334L;
 
-    public Car(){
+    public Car() {
         super();
     }
 
@@ -93,4 +89,3 @@ public class Car implements Serializable {
         this.borrowedDates = borrowedDates;
     }
 }
-

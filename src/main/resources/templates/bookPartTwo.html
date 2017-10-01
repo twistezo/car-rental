@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="layout :: head"></head>
+
 <body>
-<nav th:replace="layout :: nav"></nav>
-
-<div class="container">
-
-    <div class="row">
-        <div class="col-sm-3 text-right">
-            <div class="center-block">
-                <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}"/>
-            </div>
-        </div>
-        <div class="col-sm-9">
-            <div class="caption">
-                <h3 th:text="${carById.name}"></h3>
-                <p th:text="${carById.description}"></p>
-                <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
-            </div>
-        </div>
-    </div>
-
-    <hr>
+    <nav th:replace="layout :: nav"></nav>
     <div class="container">
-
-        <h3>Complete the form:</h3>
-
+        <div class="row">
+            <div class="col-sm-3 text-right">
+                <div class="center-block">
+                    <img width="200" th:src="@{'/img/'+${carById.name}+'.png'}" />
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="caption">
+                    <h3 th:text="${carById.name}"></h3>
+                    <p th:text="${carById.description}"></p>
+                    <h6 th:text="'Price: '+${carById.price}+ ' EUR / day'"></h6>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <h3>Complete the form:</h3>
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-
                 <form name="bookPartTwoForm" th:object="${customer}" method="post" onsubmit="return validateForm()">
                     <div class="form-group">
                         <label>Full name:</label>
@@ -46,52 +41,47 @@
                         <input type="password" class="form-control" name="password" placeholder="Enter password">
                         <h4 id="passwordValidation" class="bg-danger"></h4>
                     </div>
-                    <button class="btn btn-success" type="submit" >Next</button>
+                    <button class="btn btn-success" type="submit">Next</button>
                 </form>
-
             </div>
             <div class="col-sm-3"></div>
-
+        </div>
+        <hr>
+        <footer th:replace="layout :: footer"></footer>
     </div>
+    <script>
+        function validateForm() {
+            var fullName = document.bookPartTwoForm.fullName.value;
+            var login = document.bookPartTwoForm.login.value;
+            var password = document.bookPartTwoForm.password.value;
 
-    <hr>
+            if (fullName == null || fullName == "") {
+                document.getElementById("fullNameValidation").innerHTML = "Full name can't be blank";
+                return false;
+            }
+            else if (fullName.length < 2 || fullName.length > 50) {
+                document.getElementById("fullNameValidation").innerHTML = "Full name must be between 2 ~ 50 length";
+                return false;
+            }
+            else if (login == null || login == "") {
+                document.getElementById("emailValidation").innerHTML = "Email can't be blank";
+                return false;
+            }
+            else if (login.length < 2 || login.length > 50) {
+                document.getElementById("emailValidation").innerHTML = "Email must be between 2 ~ 50 length";
+                return false;
+            }
+            else if (password == null || password == "") {
+                document.getElementById("passwordValidation").innerHTML = "Password can't be blank";
+                return false;
+            }
+            else if (password.length < 5 || password.length > 60) {
+                document.getElementById("passwordValidation").innerHTML = "Password must be between 5 ~ 60 length";
+                return false;
+            }
+        }
 
-    <footer th:replace="layout :: footer"></footer>
-
-</div>
-
-<script>
-    function validateForm(){
-        var fullName=document.bookPartTwoForm.fullName.value;
-        var login=document.bookPartTwoForm.login.value;
-        var password=document.bookPartTwoForm.password.value;
-
-        if (fullName==null || fullName==""){
-            document.getElementById("fullNameValidation").innerHTML = "Full name can't be blank";
-            return false;
-        }
-        else if (fullName.length < 2 || fullName.length > 50) {
-            document.getElementById("fullNameValidation").innerHTML = "Full name must be between 2 ~ 50 length";
-            return false;
-        }
-        else if (login==null || login==""){
-            document.getElementById("emailValidation").innerHTML = "Email can't be blank";
-            return false;
-        }
-        else if (login.length < 2 || login.length > 50) {
-            document.getElementById("emailValidation").innerHTML = "Email must be between 2 ~ 50 length";
-            return false;
-        }
-        else if (password==null || password==""){
-            document.getElementById("passwordValidation").innerHTML = "Password can't be blank";
-            return false;
-        }
-        else if (password.length < 5 || password.length > 60) {
-            document.getElementById("passwordValidation").innerHTML = "Password must be between 5 ~ 60 length";
-            return false;
-        }
-    }
-</script>
-
+    </script>
 </body>
+
 </html>

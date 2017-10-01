@@ -6,10 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author twistezo (20.02.2017)
- */
-
 @Service
 public class CarServiceImpl implements CarService {
 

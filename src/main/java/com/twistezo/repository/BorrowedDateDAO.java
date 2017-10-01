@@ -9,13 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Calendar;
 import java.util.List;
 
-/**
- * @author twistezo (02.03.2017)
- */
-
 @Repository
 public interface BorrowedDateDAO extends JpaRepository<BorrowedDate, Long> {
-
     BorrowedDate findByCustomerId(Long id);
     BorrowedDate findByCarId(Long id);
     List<BorrowedDate> findAll();

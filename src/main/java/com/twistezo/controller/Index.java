@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Calendar;
 import java.util.List;
 
-/**
- * @author twistezo (21.02.2017)
- */
-
 @Controller
 public class Index {
 
@@ -27,14 +23,10 @@ public class Index {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model,
-                         @RequestParam(value = "start_date", defaultValue = "1800-01-01", required = false)
-                         @DateTimeFormat(pattern="yyyy-MM-dd") Calendar startDate,
-                         @RequestParam(value = "end_date", defaultValue = "3000-01-01", required = false)
-                         @DateTimeFormat(pattern="yyyy-MM-dd") Calendar endDate) {
-
+            @RequestParam(value = "start_date", defaultValue = "1800-01-01", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Calendar startDate,
+            @RequestParam(value = "end_date", defaultValue = "3000-01-01", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Calendar endDate) {
         List<AvailableCarsResult> availableCars = borrowedDateService.checkAvailableCars(startDate, endDate);
         model.addAttribute("availableCars", availableCars);
         return "index";
     }
-
 }

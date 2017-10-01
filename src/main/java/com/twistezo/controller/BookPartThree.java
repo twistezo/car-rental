@@ -15,12 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 
-/**
- * @author twistezo (08.03.2017)
- */
-
 @Controller
-@SessionAttributes({"customer", "borrowedDate"})
+@SessionAttributes({ "customer", "borrowedDate" })
 public class BookPartThree {
 
     private CarService carService;
@@ -32,20 +28,15 @@ public class BookPartThree {
     }
 
     @RequestMapping(value = "bookPartThree{car_id}", method = RequestMethod.GET)
-    public String showSessionCar(Model model,
-                                    @RequestParam(value = "car_id") Long carId) {
-
+    public String showSessionCar(Model model, @RequestParam(value = "car_id") Long carId) {
         Car carById = carService.findById(carId);
         model.addAttribute("carById", carById);
         return "bookPartThree";
     }
 
     @RequestMapping(value = "bookPartThree", method = RequestMethod.POST)
-    public String realizePayment(Customer customer,
-                                    BorrowedDate borrowedDate,
-                                    RedirectAttributes redirectAttributes,
-                                    @RequestParam(value = "car_id") Long CarId) {
-
+    public String realizePayment(Customer customer, BorrowedDate borrowedDate, RedirectAttributes redirectAttributes,
+            @RequestParam(value = "car_id") Long CarId) {
         long days = borrowedDateService.countDays(borrowedDate);
         customer.setTotalPrice(customer.getTotalPrice().multiply(new BigDecimal(days)));
         customer.setRole("ROLE_USER");

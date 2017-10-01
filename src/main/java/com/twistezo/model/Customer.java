@@ -8,16 +8,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author twistezo (20.02.2017)
- */
-
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
     private static final long serialVersionUID = -5499172417961772372L;
 
-    public Customer(){
+    public Customer() {
         super();
     }
 
@@ -26,11 +22,11 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min = 2, max=50)
+    @Size(min = 2, max = 50)
     @Column(name = "login", length = 50)
     private String login;
 
-    @Size(min=5, max=60)
+    @Size(min = 5, max = 60)
     @Column(name = "password", length = 60)
     private String password;
 
@@ -38,7 +34,7 @@ public class Customer implements Serializable {
     @Column(name = "fullName", length = 50)
     private String fullName;
 
-    @Size(min=5, max = 50)
+    @Size(min = 5, max = 50)
     @Column(name = "role", length = 50)
     private String role;
 

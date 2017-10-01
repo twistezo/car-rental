@@ -18,6 +18,13 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 - cancel button on every page cleans current session
 - when everything is fine all data is saved to MySQL DB
 
+### Build, Run, Test
+```
+mvn install
+mvn spring-boot:run
+mvn test
+```
+
 ### Screenshots
 
 <table>
@@ -30,3 +37,6 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
         </td>
     </tr>
 </table>
+
+### FIXME
+After a few months email sender stop working. Probably by blocking the mail address through the provider.
