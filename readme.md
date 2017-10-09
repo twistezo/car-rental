@@ -1,7 +1,8 @@
 ## Car Rental
 
 ### Description
-Web service for car rental company (non-commercial)
+Web service for car rental company.
+Non-commercial project.
 
 ### Tools
 Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
