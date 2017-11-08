@@ -18,10 +18,17 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
 - cancel button on every page cleans current session
 - when everything is fine all data is saved to MySQL DB
 
-### Build, Run, Test
+### Requirements
+Java, mySQL, Maven
+
+### Run, Test
 ```
-mvn install
-mvn spring-boot:run
+// prepare new user and empty DB
+mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS car_rental;'
+mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
+mysql -u root -p -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
+
+mvn spring-boot:run -> localhost:8080
 mvn test
 ```
 
