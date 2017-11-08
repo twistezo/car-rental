@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/twistezo/car-rental.svg?branch=master)](https://travis-ci.org/twistezo/car-rental)
+
 ## Car Rental
 
 ### Description
