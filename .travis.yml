@@ -1,10 +1,9 @@
 language: java
-# sudo: false
-services:
-  - mysql
+sudo: false
+services: 
+ - mysql
 before_install: 
- - mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS car_rental;'
- - mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
- - mysql -u root -p -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
-install: mvn install
-script: mvn test
+ - mysql -u root -e 'CREATE DATABASE IF NOT EXISTS car_rental;'
+ - mysql -u root -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
+ - mysql -u root -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
+script: mvn spring-boot:start
