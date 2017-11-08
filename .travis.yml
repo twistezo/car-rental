@@ -7,4 +7,6 @@ before_install:
  - mysql -u root -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
  - mysql -u root -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
  - mysql -u root -e 'show databases;'
-script: mvn spring-boot:start
+script: 
+ - mvn spring-boot:start
+ - mvn test
