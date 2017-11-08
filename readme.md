@@ -4,7 +4,7 @@
 Web service for car rental company (non-commercial)
 
 ### Tools
-Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript
+Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript, Travis CI
 
 ### Features
 - various ways of search (e.g. by car, by calendar)
