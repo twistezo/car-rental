@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/twistezo/car-rental.svg?branch=master)](https://travis-ci.org/twistezo/car-rental)
-
 ## Car Rental
+[![Build Status](https://travis-ci.org/twistezo/car-rental.svg?branch=master)](https://travis-ci.org/twistezo/car-rental)
 
 ### Description
 Web service for car rental company (non-commercial)
@@ -23,9 +22,9 @@ Java, Spring, Hibernate, MySQL, Thymeleaf, Bootstrap, JavaScript, Travis CI
 ### Requirements
 Java, mySQL, Maven
 
-### Run, Test
+### Run, test
 ```
-// prepare new user and empty DB
+Prepare new user and empty DB:
 mysql -u root -p -e 'CREATE DATABASE IF NOT EXISTS car_rental;'
 mysql -u root -p -e "CREATE USER 'dev'@'localhost' IDENTIFIED BY 'dev';"
 mysql -u root -p -e "GRANT ALL ON car_rental.* TO 'dev'@'localhost';"
